@@ -1,0 +1,3 @@
+[submodule "rustworkx"]
+	path = rustworkx
+	url = https://github.com/Qiskit/rustworkx
