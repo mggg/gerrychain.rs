@@ -1,16 +1,32 @@
-[build-system]
-requires = ["maturin>=0.14,<0.15"]
-build-backend = "maturin"
-
-[project]
-name = "gerrychain.rs"
-requires-python = ">=3.7"
+[tool.poetry]
+name = "gerrychain-rs"
+version = "0.1.0"
+description = "Compiled extensions for GerryChain"
+authors = ["MGGG Redistricting Lab <code@mggg.org>"]
+license = "MIT"
 classifiers = [
     "Programming Language :: Rust",
     "Programming Language :: Python :: Implementation :: CPython",
     "Programming Language :: Python :: Implementation :: PyPy",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: BSD License",
 ]
 
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.group.dev.dependencies]
+networkx = "^3.1"
+maturin = "^0.14"
+pytest = "^7.1.2"
+black = "^23.3.0"
+isort = "^5.12.0"
+
+[build-system]
+requires = ["maturin>=0.14,<0.15"]
+build-backend = "maturin"
 
 [tool.maturin]
 features = ["pyo3/extension-module"]

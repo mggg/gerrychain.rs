@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - main
-      - master
     tags:
       - '*'
   pull_request:
@@ -21,12 +20,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        target: [x86_64, x86, aarch64, armv7, s390x, ppc64le]
+        target: [x86_64, x86, aarch64, armv7]
+        version: ['3.9', '3.10', '3.11']
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: ${{ matrix.version }}
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
@@ -45,11 +45,12 @@ jobs:
     strategy:
       matrix:
         target: [x64, x86]
+        version: ['3.9', '3.10', '3.11']
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: ${{ matrix.version }}
           architecture: ${{ matrix.target }}
       - name: Build wheels
         uses: PyO3/maturin-action@v1
@@ -68,11 +69,12 @@ jobs:
     strategy:
       matrix:
         target: [x86_64, aarch64]
+        version: ['3.9', '3.10', '3.11']
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: ${{ matrix.version }}
       - name: Build wheels
         uses: PyO3/maturin-action@v1
         with:
